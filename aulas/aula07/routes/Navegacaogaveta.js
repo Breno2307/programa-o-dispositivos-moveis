@@ -1,17 +1,30 @@
 import "react-native-gesture-handler";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/home";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { MaterialIcons } from "@expo/vector-icons";
+import Home from "../screens/Home";
 import Perfil from "../screens/Perfil";
 
-const Drawer = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
-function Navegacaogaveta() {
-    return (
-        <Drawer.Navigator>
-      <Drawer.screen name="Home" component={Home} />
-      <Drawer.screen name="Perfil" component={Perfil} />
+function NavegacaoGaveta() {
+  return (
+    <Drawer.Navigator screenOptions={
+      ({route}) => ({
+      drawerIcon: ({color, size}) => {
+        let icone;
+        if (route.name == "Home") {
+          icone = "home"
+        } else if (route.name == "Perfil") {
+          icone = "person"
+        }
+        return <MaterialIcons name={icone} 
+        color={color} size={size} />;
+      }
+    })}>
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Perfil" component={Perfil} />
     </Drawer.Navigator>
   );
 }
 
-export default Navegacaogaveta;
+export default NavegacaoGaveta;

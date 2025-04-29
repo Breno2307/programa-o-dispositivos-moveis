@@ -1,6 +1,9 @@
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 
-function Perfil() {
+function Perfil({ navigation, route }) {
+  const {id, nome} = route.params
+  ? route.params
+  : {id :null, nome: null};
   return (
     <View
       style={{
@@ -9,7 +12,10 @@ function Perfil() {
         alignItems: "center",
       }}
     >
-      <Text>Perfil</Text>
+      <Text>Perfil
+        {route.params && `${id}-${nome}`}
+      </Text>
+      <Button title="volta" onPress={() => navigation.goBack("Home")} />
     </View>
   );
 }
