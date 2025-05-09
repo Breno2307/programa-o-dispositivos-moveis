@@ -6,22 +6,29 @@ function RedefinirSenha() {
   const [email, setEmail] = useState("");
   const [erro, setErro] = useState("");
 
-
-  const trataValor = (text) => {
-    setEmail(text);
-  }
- 
-  const trataEnviar = () => {
+  const validaEmail = () => {
     if (!email) {
       setErro("E-mail é obrigatorio");
-      return;
+      return false;
     }
 
     if (!email.includes("@")) {
       setErro("E-mail inválido");
-      return;
+      return false;
     }
 
+    return true;
+  };
+
+  const trataTexto = (texto) => {
+    setEmail(texto);
+    validaEmail();
+  }
+
+  const trataEnviar = () => {
+    if (!validaEmail()) {
+      return;
+    }
     setEmail("");
     setErro("");
     alert("E-mail enviado!");
@@ -34,12 +41,11 @@ function RedefinirSenha() {
         keyboardType="email-address"
         label="Email"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={trataTexto}
         mode="outlined"
-        style={{ marginBottom: 16 }}
-        error={erro!=""}
+        error={erro != ""}
       />
-      <HelperText type="error" visible={erro}>
+      <HelperText type="error" visible={erro != ""}>
         {erro}
       </HelperText>
       <Button mode="contained" onPress={trataEnviar}>
