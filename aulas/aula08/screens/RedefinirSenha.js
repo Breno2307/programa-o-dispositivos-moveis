@@ -35,6 +35,7 @@ function RedefinirSenha() {
   };
 
   return (
+
     <View style={{ flex: 1, padding: 16 }}>
       <TextInput
         autoCapitalize="none"
