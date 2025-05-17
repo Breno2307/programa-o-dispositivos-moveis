@@ -13,11 +13,11 @@ function CriarConta() {
       <View style={{ flex: 1, padding: 16 }}>
         <Controller
           control={control}
-          name="Nome"
+          name="nome"
           rules={{require:"Nome é obrigadoria"}}
           render={({ field: { value, onChange } }) => (
             <TextInput
-              label="nome"
+              label="Nome"
               mode="outlined"
               autoCapitalize="sentences"
               value={value}
