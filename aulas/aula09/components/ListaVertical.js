@@ -1,16 +1,10 @@
 import { View, FlatList } from "react-native";
-import { List } from "react-native-paper";
+import { List, Text } from "react-native-paper";
+import { useContext } from "react";
+import { LojaContext } from "../Context/LojaContext";
 
 function ListaVertical() {
-  const lojas = [
-    "Restaurante Asa Sul",
-    "Restaurante Asa Norte",
-    "Restaurante Tagua",
-    "Restaurante Ceilandia",
-    "Bar Sudoeste",
-    "Lanchonete Game",
-    "Pizzaria Nucleo",
-  ];
+  const {lojas} = useContext (LojaContext);
   return (
     <View>
       <Text variant="titleMedium">Lojas</Text>
@@ -18,7 +12,9 @@ function ListaVertical() {
         data={lojas}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => index}
-        renderItem={([item]) => <List.Item title={item} description={"#4,8"} />}
+        renderItem={({ item }) => (
+          <List.Item title={item.nome} description={`* ${item.nota}`} />
+        )}
       />
     </View>
   );
